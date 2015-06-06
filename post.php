@@ -1,22 +1,19 @@
 <?php
 
-$m = new MongoClient() ;
+$m = new MongoClient('mongodb://localhost/') ;
 
 $db = $m->envirocontrol ;
 
 $collection = $db->log_entries ;
 
-$json = $_POST["json"] ;
-
-echo $json ;
+$json =  json_decode($_POST["json"]);
 
 $time = new MongoDate() ;
-//$document = array( "id" => $id, "temperature" => temperature , "humidity" => $humidity, "time" => $time ) ;
-//$collection->insert($document) ;
+$document = array( "id" => $json->{'id'}, "temperature" => $json->{'temperature'} , "humidity" => $json->{'humidity'} , "time" => $time ) ;
+$collection->insert($document) ;
 
-// TODO: Create response json
-
-// TODO: Return json
+$json = json_encode ( array ( 'status' => 'OK' ) ) ;
+echo $json
 
 
 ?>
