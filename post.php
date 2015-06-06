@@ -6,12 +6,13 @@ $db = $m->envirocontrol ;
 
 $collection = $db->log_entries ;
 
-// TODO: Get JSON and parse
+$json = $_POST["json"] ;
+
+echo $json ;
 
 $time = new MongoDate() ;
 //$document = array( "id" => $id, "temperature" => temperature , "humidity" => $humidity, "time" => $time ) ;
-$document = array( "test" => "succeeded" ) ;
-$collection->insert($document) ;
+//$collection->insert($document) ;
 
 // TODO: Create response json
 
